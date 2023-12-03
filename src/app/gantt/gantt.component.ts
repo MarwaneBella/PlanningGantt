@@ -26,7 +26,7 @@ class GridHeader{
 })
 export class GanttComponent {
 
-  colors: string[] = ['#FF5733', '#33FF57', '#5733FF', '#33B5FF', '#FF3373'];
+  colors: string[] = ['#fca5a5', '#fdba74', '#bef264', '#5eead4', '#93c5fd','#c4b5fd', '#f9a8d4', '#d4d4d4', "#cbd5e1"];
 
   eventForm: FormGroup;
 
