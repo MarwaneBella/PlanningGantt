@@ -192,12 +192,11 @@ export class GanttComponent {
   compareDates(date1: Date, date2: Date):boolean{
 
     if(date1 <= date2){
-      this.datesValide = true;
+      this.datesValide = false;
       return true;
     }
     else{
-      this.datesValide = false;
-
+      this.datesValide = true;
       return false;
     }
   }
