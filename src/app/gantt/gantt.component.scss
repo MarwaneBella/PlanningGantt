@@ -1,0 +1,30 @@
+
+
+.event {
+  margin-bottom: 10px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+
+.chart-container{
+  // background-color: #f6f9ff;
+  width: 90%;
+  height: 700px;
+}
+
+.chart-header{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  border: 2px solid #484867;
+  background-color: #0069D8;
+
+}
+
+.col-end-12 {
+  grid-column-end: 12;
+}
+

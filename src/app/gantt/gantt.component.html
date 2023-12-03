@@ -1,0 +1,136 @@
+<section class="bg-gray-100">
+<div class=" bg-gray-100 py-0 flex flex-col justify-center sm:py-0">
+
+  <form class="relative grid grid-cols-2  gap-2 py-3  mx-3" [formGroup]="eventForm">
+    <div class="relative flex flex-col px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10 overflow-y-auto h-[410px]">
+      <h2 class=" flex justify-center text-xl"> Events : </h2>
+      <div class="flex flex-row  bg-slate-200 w-full p-2  " *ngFor="let event of events" >
+        <span class=" text-zinc-800 mr-3 text-base">{{ event.title }} - start : {{ event.start  }}  - end : {{ event.end}}</span>
+        <button (click)="removeEvent(event.id)" class="bg-white p-1 rounded-md   ">
+          <svg class=" fill-red-600 w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 30 30">
+          <path d="M 14.984375 2.4863281 A 1.0001 1.0001 0 0 0 14 3.5 L 14 4 L 8.5 4 A 1.0001 1.0001 0 0 0 7.4863281 5 L 6 5 A 1.0001 1.0001 0 1 0 6 7 L 24 7 A 1.0001 1.0001 0 1 0 24 5 L 22.513672 5 A 1.0001 1.0001 0 0 0 21.5 4 L 16 4 L 16 3.5 A 1.0001 1.0001 0 0 0 14.984375 2.4863281 z M 6 9 L 7.7929688 24.234375 C 7.9109687 25.241375 8.7633438 26 9.7773438 26 L 20.222656 26 C 21.236656 26 22.088031 25.241375 22.207031 24.234375 L 24 9 L 6 9 z"></path>
+        </svg>
+      </button>
+      </div>
+    </div>
+    <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
+      <div class="max-w-md mx-auto">
+        <div class="flex items-center justify-center  space-x-5">
+          <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
+            <h2 class="leading-relaxed">Create an Event</h2>
+          </div>
+        </div>
+        <div class="divide-y divide-gray-200">
+          <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+            <div class="flex flex-col">
+              <label class="leading-loose">Event Title</label>
+              <input type="text" formControlName="title" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Event title">
+            </div>
+            <div class="flex items-center space-x-4">
+              <div class="flex flex-col">
+                <label class="leading-loose">Start</label>
+                <div class="relative focus-within:text-gray-600 text-gray-400">
+                  <input type="date" formControlName="start" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="25/02/2020">
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <label class="leading-loose">End</label>
+                <div class="relative focus-within:text-gray-600 text-gray-400">
+                  <input type="date" formControlName="end" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="26/02/2020">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="pt-4 flex items-center space-x-4">
+              <button (click)="eventForm.reset()" class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Cancel
+              </button>
+              <button (click)="addEvent()" [disabled]="!eventForm.valid " class="bg-blue-500 flex justify-center items-center w-full disabled:opacity-75 text-white px-4 py-3 rounded-md focus:outline-none">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+<!-- <div>
+  <h2>Add New Event</h2>
+  <form (ngSubmit)="addEvent()">
+    <label>Title: <input name="title" [(ngModel)]="newEvent.title" required /></label>
+    <label>Start Date: <input type="date" name="start" [(ngModel)]="newEvent.start" required /></label>
+    <label>End Date: <input type="date" name="end" [(ngModel)]="newEvent.end" required /></label>
+    <button type="submit">Add Event</button>
+  </form>
+</div> -->
+
+<!-- <label>Set Date : <input type="date" name="date" [ngModel] ="dateGantt | date:'yyyy-MM-dd'"  (ngModelChange)="dateGantt = $event" (change)="changeGantt()"  required /></label> -->
+<!-- <button (click)="changeGantt()">hey</button> -->
+
+
+<div class="chart-container px-4 py-10 bg-white mx-8  shadow rounded-3xl border-2  ">
+
+  <div class="flex flex-row justify-center items-cente mb-4">
+    <label class="leading-loose mr-3">Set Date : </label>
+    <div class="relative focus-within:text-gray-600 text-gray-400">
+      <input type="date" name="date" [ngModel] ="dateGantt | date:'yyyy-MM-dd'"  (ngModelChange)="dateGantt = $event" (change)="changeGantt()"   class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" required>
+    </div>
+  </div>
+
+  <div class="chart-header">
+    <div class="grid grid-cols-9 w-full " *ngIf=" breakPointYear[0] == true && breakPointYear[1] != 0 ; else elseBlock">
+      <div class="col-start-1 col-end-{{breakPointYear[1]}} flex justify-center border-r-2 border-stone-950 " >
+        <span> year : {{realDateGantt.getFullYear()-1}}</span>
+      </div>
+      <div class="col-start-{{breakPointYear[1]}} col-end-10 flex justify-center " >
+        <span> year : {{realDateGantt.getFullYear()}}</span>
+      </div>
+    </div>
+    <ng-template #elseBlock >
+      <div class="flex justify-center w-full " >
+        <span> year : {{realDateGantt.getFullYear()}}</span>
+      </div>
+    </ng-template>
+
+  </div>
+
+  <div class="grid grid-cols-9">
+    <div class="flex justify-center  items-center  border-2 shadow-sm border-black" *ngFor="let gridHeader of gridHeaders">
+      <span>semaine : {{gridHeader.week}}</span>
+    </div>
+
+  </div>
+
+  <!-- <div class="grid grid-cols-9  my-3" *ngFor="let gridEvent of gridEvents" >
+    <div  class="col-start-{{gridEvent.startGrid}} col-end-{{gridEvent.endGrid}} h-4" [style.background-color]="gridEvent.color" >
+      <span>event: {{gridEvent.title}} / {{gridEvent.startGrid}} :  {{gridEvent.endGrid}}</span>
+    </div>
+  </div> -->
+
+  <div class="grid grid-cols-9 h-10 my-3  " *ngFor="let gridEvent of gridEvents"   >
+    <div class="col-start-{{gridEvent.startGrid}} col-end-{{gridEvent.endGrid}}  rounded-md  flex justify-center items-center bg-opacity-20" [style.background-color]="gridEvent.color">
+      <span class=" text-zinc-800 mr-3 text-base"> {{gridEvent.title}} </span>
+      <button (click)="removeEvent(gridEvent.id)" class="bg-white p-1 rounded-md ">
+        <svg class=" fill-red-600 w-[20px] h-[20px]" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 30 30">
+        <path d="M 14.984375 2.4863281 A 1.0001 1.0001 0 0 0 14 3.5 L 14 4 L 8.5 4 A 1.0001 1.0001 0 0 0 7.4863281 5 L 6 5 A 1.0001 1.0001 0 1 0 6 7 L 24 7 A 1.0001 1.0001 0 1 0 24 5 L 22.513672 5 A 1.0001 1.0001 0 0 0 21.5 4 L 16 4 L 16 3.5 A 1.0001 1.0001 0 0 0 14.984375 2.4863281 z M 6 9 L 7.7929688 24.234375 C 7.9109687 25.241375 8.7633438 26 9.7773438 26 L 20.222656 26 C 21.236656 26 22.088031 25.241375 22.207031 24.234375 L 24 9 L 6 9 z"></path>
+      </svg>
+      </button>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+<div>
+  <div *ngFor="let event of events" class="event">
+    <span>{{ event.title }} - {{ event.start | date }} to {{ event.end | date }}</span>
+    <button (click)="removeEvent(event.id)">Remove</button>
+  </div>
+</div>
+</section>
